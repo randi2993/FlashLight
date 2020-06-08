@@ -1,5 +1,5 @@
 # FlashLight
-Basic Lantern Android App
+Basic Lantern Android App (English/Spanish)
 
 ### Version used
 * Android Studio 3.6.3
