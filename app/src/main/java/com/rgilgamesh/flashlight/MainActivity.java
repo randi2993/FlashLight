@@ -1,26 +1,17 @@
 package com.rgilgamesh.flashlight;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.hardware.Camera;
-import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
-import android.media.AudioManager;
-import android.media.MediaActionSound;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Layout;
-import android.view.SoundEffectConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -30,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     boolean flashStatus = false;
     private static final int REQUEST_CAMERA_PERMISSION = 200;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                         flashStatus = true;
                     }
                 }catch (Exception ex){
-                    if(ex.getMessage().contains(getString(R.string.containCameraWord))){
+                    if(ex.getMessage() != null && ex.getMessage().contains(getString(R.string.containCameraWord))){
                         camError();
                     }else{
                         Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
@@ -99,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
             cam.setParameters(params);
             cam.stopPreview();
             cam.release();
-            cam = null;
         }else {
             try {
                 CameraManager camera = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
@@ -115,11 +104,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean validatePermission() {
-        if (ContextCompat.checkSelfPermission(getApplicationContext(),
-                android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        return false;
+        return (ContextCompat.checkSelfPermission(getApplicationContext(),
+                android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);
     }
 
     private void camError(){
