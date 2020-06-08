@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">FlashLight</string>
+    <string name="textViewWelcome">Bienvenido!</string>
+    <string name="btnSwitch">Cambiar On/Off</string>
+    <string name="showLightOn">Flash On</string>
+    <string name="showLightOff">Flash Off</string>
+    <string name="camPermissionDenied">
+        Debe proporcionar permiso de la cámara, a la aplicación para poder usar el flash.
+        Otorgue los permisos o reinstale la aplicacion y seleccione "permitir".
+    </string>
+    <string name="btnBack">Volver</string>
+    <string name="containCameraWord">camera</string>
+    <string name="error">Error</string>
+</resources>
